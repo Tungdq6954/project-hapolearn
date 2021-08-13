@@ -1,0 +1,144 @@
+.why-hapolearn {
+  width: 100%;
+  position: relative;
+  background-image: url(../assets/img/rectangle_17.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 637px;
+  margin-top: 90px;
+  font-family: $font_UTM_BryantLG;
+
+  .img-laptop {
+    background-image: url(../assets/img/mb_1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 478px;
+    height: 478px;
+    top: -28%;
+  }
+
+  .title-why-hapolearn {
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 86px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: $white_color;
+    margin-top: 149px;
+    -webkit-text-stroke-width: 2px;
+    margin-bottom: 23px;
+  }
+
+  .reasons-for-why-hapolearn {
+    display: flex;
+    flex-direction: column;
+
+    .each-reason {
+      color: $white_color;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 25px;
+      letter-spacing: -0.05em;
+      margin-bottom: 20px;
+      margin-right: 32px;
+    }
+  }
+
+  .img-laptop-ipad-iphone-coffee {
+    background-image: url(../assets/img/transparent_1911160_1280.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 460px;
+    filter: drop-shadow(0px 4px 4px $hapo_learn_banner_box_shadow_color);
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .why-hapolearn {
+    height: 430px;
+
+    .img-laptop {
+      width: 400px;
+      height: 400px;
+      top: -40%;
+    }
+
+    .title-why-hapolearn {
+      font-size: 50px;
+      width: 98vw;
+      position: relative;
+      margin-top: 0;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 2;
+      top: -16px;
+      padding-left: 90px;
+      margin-bottom: 0;
+    }
+
+    .reasons-for-why-hapolearn {
+      margin-top: 46px;
+      width: 115%;
+
+      .each-reason {
+        font-size: 15px;
+        margin-bottom: 13px;
+        margin-right: 0;
+        text-align: end;
+      }
+    }
+
+    .img-laptop-ipad-iphone-coffee {
+      height: 263px;
+      margin-top: 144px;
+      background-size: cover;
+    }
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .why-hapolearn {
+    height: 620px;
+
+    .img-laptop {
+      width: 300px;
+      height: 300px;
+      top: -22%;
+    }
+
+    .title-why-hapolearn {
+      font-size: 45px;
+      width: 55vw;
+      height: auto;
+      position: relative;
+      top: 7px;
+      line-height: 40px;
+      text-align: start;
+      left: 16%;
+      padding-left: 0;
+    }
+
+    .reasons-for-why-hapolearn {
+      margin-top: 0;
+      position: relative;
+      top: 42px;
+      width: 100%;
+
+      .each-reason {
+        font-size: 16px;
+        margin-bottom: 13px;
+        line-height: 17px;
+        text-align: center;
+      }
+    }
+
+    .img-laptop-ipad-iphone-coffee {
+      height: 271px;
+      margin-top: 0;
+      position: relative;
+      top: -23px;
+    }
+  }
+}

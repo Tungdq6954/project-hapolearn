@@ -1,0 +1,279 @@
+.login-register {
+  font-family: $font_UTM_BryantLG;
+  box-sizing: border-box;
+  border-radius: 0px 0px 0px 0px;
+
+  .border-modal-custom {
+    border-radius: 0;
+    outline: none;
+    border: none;
+  }
+
+  .invalid-feedback-modal {
+    margin-left: 5%;
+    font-size: 12px;
+  }
+
+  .close-button-login-register {
+    position: absolute;
+    background: $button_color;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    outline: 0;
+    top: -14px;
+    right: -14px;
+    opacity: 1;
+
+    i {
+      color: white;
+      text-align: center;
+    }
+  }
+
+  .label-text-style {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    margin-left: 5%;
+  }
+
+  .remember-me-and-forgot-password-div {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+
+  .remember-me-label {
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .input-style {
+    background: $background_color_input;
+    border: 1px solid $border_color_input;
+    box-sizing: border-box;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    height: 60px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .remember-me-login-checkbox {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .remember-me-login-checkbox:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -2px;
+    top: -2px;
+    border: 1px solid $border_color_input;
+    background-color: white;
+    border-radius: 3px;
+  }
+
+  .remember-me-login-checkbox:checked:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -2px;
+    left: -2px;
+    background-color: $button_color;
+    border-radius: 3px;
+  }
+
+  .remember-me-login-checkbox:checked:after {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 5px;
+  }
+
+  .forgot-password-txt {
+    text-decoration: underline;
+    color: $title_color;
+    float: right;
+    font-size: 18px;
+
+    &:hover {
+      color: $button_hover_color;
+    }
+  }
+
+  .button-login {
+    width: 200px;
+    height: 42px;
+    background: $button_color;
+    box-shadow: inset 0px 1.5px 2px $main_courses_box_shadow;
+    border-radius: 22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+
+    &:hover {
+      background-color: $button_hover_color;
+    }
+  }
+
+  .login-with-txt {
+    display: flex;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 8px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+  }
+
+  .login-with-txt::before,
+  .login-with-txt::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid $login_with_color;
+  }
+
+  .login-with-txt::before {
+    margin-right: .25em;
+  }
+
+  .login-with-txt::after {
+    margin-left: .25em;
+  }
+
+  .login-with-google,
+  .login-with-facebook {
+    width: 84%;
+    height: 55px;
+    font-weight: bold;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+
+  .login-with-google {
+    background: $google_color;
+
+    &:hover {
+      background-color: $google_hover_color;
+    }
+  }
+
+  .login-with-facebook {
+    background: $facebook_color;
+
+    &:hover {
+      background-color: $facebook_hover_color;
+    }
+  }
+}
+
+.login-register-bar {
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid $title_color;
+  box-sizing: border-box;
+
+  .login-nav-tab,
+  .register-nav-tab {
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 50px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: $title_color;
+
+    &.active-tab {
+      background-color: $title_color;
+      color: white;
+      border: none;
+      border-radius: 0;
+      height: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .login-register {
+    .border-modal-custom {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .input-style {
+      height: 45px;
+    }
+  
+    .close-button-login-register {
+      top: -11px;
+      right: -8px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      i {
+        font-size: 15px;
+      }
+    }
+
+    .label-text-style {
+      font-size: 18px;
+    }
+
+    .remember-me-label {
+      font-size: 16px;
+    }
+
+    .forgot-password-txt {
+      font-size: 16px;
+    }
+
+    .login-with-google,
+    .login-with-facebook {
+      height: 45px;
+    }
+  }
+
+  .login-register-bar {
+    height: 60px;
+  
+    .login-nav-tab,
+    .register-nav-tab {
+      font-size: 22px;
+      line-height: 41px;
+  
+      &.active-tab {
+        height: 60px;
+      }
+    }
+  }
+}
