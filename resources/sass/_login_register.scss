@@ -9,6 +9,11 @@
     border: none;
   }
 
+  .invalid-feedback-modal {
+    margin-left: 5%;
+    font-size: 12px;
+  }
+
   .close-button-login-register {
     position: absolute;
     background: $button_color;
