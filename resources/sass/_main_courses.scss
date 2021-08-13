@@ -1,0 +1,124 @@
+.main-courses {
+  width: 100%;
+
+  .custom-card-row {
+    margin-top: 67px;
+  }
+}
+
+.custom-card-style {
+  @include custom-card-style-mixin();
+
+  .img-frontend-course {
+    background: $frontend_course_color;
+    @include img-course();
+  }
+
+  .img-laravel-course {
+    background: $laravel_course_color;
+    @include img-course();
+  }
+
+  .img-php-course {
+    background: $php_course_color;
+    @include img-course();
+  }
+
+  .title-course {
+    @include title-course-mixin();
+  }
+
+  .content-course {
+    @include content-course-mixin();
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    height: 82px;
+    width: 258px;
+  }
+
+  .button-course {
+    @include button-course-mixin();
+
+    &:hover {
+      color: $text_color;
+    }
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .main-courses {
+    .custom-card-row {
+      margin-top: 0px;
+      padding-top: 35px;
+    }
+  }
+
+  .custom-card-style {
+    margin-right: 5px;
+    margin-left: 5px;
+
+    .img-frontend-course,
+    .img-laravel-course,
+    .img-php-course {
+      @include img-course-at-769px();
+    }
+
+    .title-course {
+      font-size: 16px;
+      margin: 0;
+      -webkit-text-stroke-width: 0.4px;
+      margin-top: 5px;
+    }
+
+    .content-course {
+      @include content-course-in-769px();
+    }
+
+    .button-course {
+      @include button-course-in-769px();
+    }
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .main-courses {
+    .custom-card-row {
+      margin-top: 54px;
+    }
+  }
+
+  .custom-card-style {
+    margin-left: 25px;
+    margin-right: 25px;
+
+    .img-frontend-course,
+    .img-laravel-course,
+    .img-php-course {
+      @include img-course-at-415px();
+    }
+
+    .title-course {
+      font-size: 23px;
+      margin: 0;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    .content-course {
+      font-size: 14px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      width: 272px;
+      height: 80px;
+      margin: 0 15px 0 15px;
+    }
+
+    .button-course {
+      @include button-course-in-415px;
+    }
+  }
+}
