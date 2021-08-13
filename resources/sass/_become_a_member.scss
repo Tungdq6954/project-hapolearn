@@ -1,0 +1,78 @@
+.become-a-member {
+  background-image: url(../assets/img/become_a_member.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 469px;
+  font-family: $font_UTM_BryantLG;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .become-a-member-tilte {
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: $white_color;
+    width: 671px;
+  }
+
+  .become-a-member-button {
+    background: $white_color;
+    box-shadow: inset 0px 4px 4px $hapo_learn_banner_box_shadow_color;
+    border-radius: 35px;
+    width: 377px;
+    height: 70px;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: -0.05em;
+    color: $view_all_courses;
+    margin-top: 13px;
+
+    &:hover {
+      color: $text_color;
+    }
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .become-a-member {
+    height: 267px;
+
+    .become-a-member-tilte {
+      font-size: 35px;
+      width: 65%;
+    }
+
+    .become-a-member-button {
+      width: 250px;
+      height: 46px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .become-a-member {
+    height: 211px;
+    background-size: cover;
+    background-position: center;
+
+    .become-a-member-tilte {
+      font-size: 23px;
+      width: 70%;
+    }
+
+    .become-a-member-button {
+      width: 200px;
+      height: 37px;
+      font-size: 18px;
+    }
+  }
+}
