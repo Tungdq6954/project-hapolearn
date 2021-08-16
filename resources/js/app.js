@@ -1,4 +1,6 @@
 import 'slick-carousel/slick/slick';
 
 require('./bootstrap');
-require('./style');
+require('select2');
+require('./home');
+require('./all_courses');

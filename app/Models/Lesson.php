@@ -12,17 +12,17 @@ class Lesson extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'description', 'requirement', 'content', 'course_id'
+        'title', 'description', 'requirement', 'content', 'course_id', 'learn_time'
     ];
 
     public function course()
     {
-        return $this->belongsTo(Course::class, 'course_id', 'id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'lesson_id', 'id')->where('course_id', null);
+        return $this->hasMany(Review::class, 'lesson_id')->where('course_id', null);
     }
 
     public function users()

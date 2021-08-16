@@ -85,9 +85,6 @@ $(function () {
     $(this).addClass('active-tab');
   });
 
-    $(this).addClass('active-tab');
-  });
-
   $('#logout-nav').on('click', function (event) {
     event.preventDefault();
     $('#logout-form').submit();
