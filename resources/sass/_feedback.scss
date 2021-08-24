@@ -55,12 +55,16 @@
       padding-top: 23px;
       font-size: 15px;
       color: black;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
 
   .comment:after,
   .comment:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     left: 10px;
@@ -128,12 +132,11 @@
   display: flex;
 
   .customer-avatar {
-    background-image: url(../assets/img/ellipse_1.png);
-    background-repeat: no-repeat;
-    background-size: contain;
+    object-fit: fill;
     height: 60px;
     width: 60px;
     margin-left: 11px;
+    border-radius: 50%;
   }
 
   .customer-name {

@@ -1,18 +1,6 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
+@import 'import';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-@import '~@fortawesome/fontawesome-free/scss/brands';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-
-@import "~slick-carousel/slick/slick";
-@import "~slick-carousel/slick/slick-theme";
-
-@import 'header', 'login_register', 'messenger', 'banner', 'main_courses', 'other_courses', 'why_hapolearn', 'feedback', 'become_a_member', 'statistic', 'footer', 'alert';
+@import 'header', 'login_register', 'messenger', 'banner', 'main_courses', 'other_courses', 'why_hapolearn', 'feedback', 'become_a_member', 'statistic', 'footer', 'alert', 'all_courses';
