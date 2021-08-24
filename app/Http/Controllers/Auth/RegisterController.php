@@ -49,7 +49,7 @@ class RegisterController extends Controller
     {
         $user = $this->create($request->all());
         Auth::login($user);
-        return redirect()->back()->with('success', 'Register success, Welcome to HapoLearn');
+        return redirect()->route('home')->with('success', 'Register success');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateRoleToTableUser extends Migration
+class UpdateLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateRoleToTableUser extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->default(0)->comment('1: teacher, 0: student')->change();
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->float('learn_time')->default(0)->after('content');
         });
     }
 
@@ -25,8 +25,8 @@ class UpdateRoleToTableUser extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->nullable()->change();
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->dropColumn('learn_time');
         });
     }
 }

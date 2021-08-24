@@ -72,7 +72,7 @@ class User extends Authenticatable
      */
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'user_id', 'id');
+        return $this->hasMany(Review::class, 'user_id');
     }
 
     /**
@@ -80,8 +80,13 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users()
+    public function lessons()
     {
         return $this->belongsToMany(Lesson::class, 'lesson_users', 'used_id', 'lesson_id');
+    }
+
+    public function scopeTeachers($query)
+    {
+        $query->where('role', config('constants.role.teacher'));
     }
 }

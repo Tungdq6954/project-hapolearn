@@ -7,13 +7,22 @@
 }
 
 @font-face {
-  font-family: 'open_sansbold';
-  src: url('../assets/fonts/opensans-bold-webfont.woff2') format('woff2'),
-       url('../assets/fonts/opensans-bold-webfont.woff') format('woff');
+  font-family: "open_sansbold";
+  src: url("../assets/fonts/opensans-bold-webfont.woff2") format("woff2"),
+    url("../assets/fonts/opensans-bold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: "open_sansregular";
+  src: url("../assets/fonts/opensans-regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/opensans-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font_Open_Sans_regular: "open_sansregular";
 $font_Open_Sans: "open_sansbold";
 $font_UTM_BryantLG: "utm_bryantlgregular";
 $white_color: #ffffff;
@@ -28,29 +37,31 @@ $php_course_color: #556598;
 $hapo_learn_banner_background_color: #e5e5e5;
 $hapo_learn_banner_box_shadow_color: rgba(0, 0, 0, 0.25);
 $main_courses_box_shadow: #6f8710;
-$css_course_color: #24ABE2;
-$rails_course_color: #E14E40;
-$java_course_color: #1B75BB;
-$view_all_courses: #90AB26;
-$border_comment: #E2E2E2;
-$yellow_color: #F2C54F;
-$vertical_in_comment: #D9DADC;
-$arrow_color: #C4C4C4;
+$css_course_color: #24abe2;
+$rails_course_color: #e14e40;
+$java_course_color: #1b75bb;
+$view_all_courses: #90ab26;
+$border_comment: #e2e2e2;
+$yellow_color: #f2c54f;
+$vertical_in_comment: #d9dadc;
+$arrow_color: #c4c4c4;
 $footer_bottom_color: #454545;
-$hapolearn_txt_in_chatbox: #7F7F7F;
-$background_message: #F1F0F0;
-$button_message_color: #3184F7;
-$chat_with_hapolearn_in_messenger_txt: #B3B3B3;
-$background_color_input: #F2F2F2;
-$border_color_input: #E1E1E1;
-$login_with_color: #DBDBDB;
-$google_color: #DC4E41;
+$hapolearn_txt_in_chatbox: #7f7f7f;
+$background_message: #f1f0f0;
+$button_message_color: #3184f7;
+$chat_with_hapolearn_in_messenger_txt: #b3b3b3;
+$background_color_input: #f2f2f2;
+$border_color_input: #e1e1e1;
+$login_with_color: #dbdbdb;
+$google_color: #dc4e41;
 $google_hover_color: #a22014;
-$facebook_color: #3B5999;
+$facebook_color: #3b5999;
 $facebook_hover_color: #1f3669;
 $messenger_button_hover_color: #1d56a7;
 $icon_arrow_feedback_color: #969494;
 $background_color_header_in_768px: #fefbfb;
+$customize_list_courses_card_border: #f1f1f1;
+$button_oldest_newest: #e5e6e7;
 
 .hidden {
   display: none !important;
@@ -71,7 +82,7 @@ $background_color_header_in_768px: #fefbfb;
   height: 190px;
   box-shadow: 0px 0px 10px $hapo_learn_banner_box_shadow_color;
   border-radius: 15px 15px 0px 0px;
-  object-fit: scale-down;
+  object-fit: fill;
 }
 
 @mixin img-course-at-769px {
@@ -103,6 +114,10 @@ $background_color_header_in_768px: #fefbfb;
   color: $title_color;
   margin: 20px 10px 10px 10px;
   -webkit-text-stroke-width: 1px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 @mixin content-course-mixin {
