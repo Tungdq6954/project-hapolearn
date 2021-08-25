@@ -29,4 +29,12 @@ class Lesson extends Model
     {
         return $this->belongsToMany(User::class, 'lesson_users', 'lesson_id', 'used_id');
     }
+
+    public function scopeSearch($query, $data, $courseId)
+    {
+        $query->where([
+            ['course_id', '=', $courseId],
+            ['title', 'like', '%' . $data['search_form_input'] . '%']
+        ]);
+    }
 }
