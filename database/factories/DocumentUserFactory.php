@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\LessonUser;
+use App\Models\DocumentUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LessonUserFactory extends Factory
+class DocumentUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = LessonUser::class;
+    protected $model = DocumentUser::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,8 @@ class LessonUserFactory extends Factory
     public function definition()
     {
         return [
-            'lesson_id' => rand(1, 200),
+            'document_id' => rand(1, 200),
             'user_id' => rand(1, 200),
-            'learned' => rand(0, 1)
         ];
     }
 }

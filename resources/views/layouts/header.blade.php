@@ -36,7 +36,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-secondary" href="#" data-toggle="modal"
-                            data-target="#login-register">LOGIN/REGISTER</a>
+                            data-target="#login-register" id="nav-link-login-register">LOGIN/REGISTER</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-secondary" href="#">PROFILE</a>
