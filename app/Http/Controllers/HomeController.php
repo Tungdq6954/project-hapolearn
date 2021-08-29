@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $mainCourses = Course::query()->mainCourse()->get();
-        $otherCourses = Course::query()->otherCourse()->get();
+        $otherCourses = Course::query()->otherCourse(config('constants.id_zero'))->limit(config('constants.number_other_course_in_home'))->get();
         $reviews = Review::query()->reviewHome()->get();
 
         return view('home', compact(['mainCourses', 'otherCourses', 'reviews']));
