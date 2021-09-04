@@ -1,0 +1,74 @@
+.teacher {
+  font-family: $font_UTM_BryantLG;
+  background: white;
+  margin-top: 27px;
+
+  .img-teacher {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .teacher-name {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .teacher-experience {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    color: $teacher_experience;
+  }
+
+  .teacher-contact {
+    display: flex;
+    margin-top: 5px;
+
+    .icon-google,
+    .icon-facebook,
+    .icon-slack {
+      width: 20px;
+      height: 20px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      display: block;
+      text-decoration: none;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+
+    .icon-google {
+      border: 0.5px solid $icon_google;
+      background-image: url(../assets/img/google_icon.png);
+    }
+
+    .icon-facebook {
+      border: 0.5px solid $icon_facebook;
+      background-image: url(../assets/img/facebook_icon.png);
+    }
+
+    .icon-slack {
+      border: 0.5px solid $icon_slack;
+      background-image: url(../assets/img/slack_icon.png);
+    }
+  }
+
+  .teacher-info {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.02em;
+    color: $icon_arrow_feedback_color;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}

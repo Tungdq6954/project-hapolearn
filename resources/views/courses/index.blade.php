@@ -14,7 +14,7 @@
                     </a>
 
                     <input type="text" name="search_form_input" id="search-form-input" placeholder="Search..."
-                        class="search-form-input" @if (isset($keyword)) value={{ $keyword }} @endif>
+                        class="search-form-input" @if (isset($keyword)) value="{{ $keyword }}" @endif>
                     <div class="search-form-img"><i class="fas fa-search"></i></div>
 
                     <button type="submit" class="search-button">Tìm kiếm</button>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
@@ -27,6 +28,37 @@ class Lesson extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'lesson_users', 'lesson_id', 'used_id');
+        return $this->belongsToMany(User::class, 'lesson_users', 'lesson_id', 'user_id')->withPivot('learned');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'lesson_id');
+    }
+
+    public function getUsersAttribute()
+    {
+        return $this->users()->get();
+    }
+
+    public function getDocumentsAttribute()
+    {
+        return $this->documents()->get();
+    }
+
+    public function getProgressAttribute()
+    {
+        $isLearnedDocuments = DocumentUser::query()->isLearnedDocuments(Auth::id(), $this->id)->count();
+        $allDocumentsOfLesson = ($this->documents()->count() == 0) ? 1 : $this->documents()->count();
+        $percentage = ($isLearnedDocuments / $allDocumentsOfLesson) * 100;
+        return ($percentage == null) ? 0 : $percentage;
+    }
+
+    public function scopeSearch($query, $data, $courseId)
+    {
+        $query->where([
+            ['course_id', '=', $courseId],
+            ['title', 'like', '%' . $data['search_form_input'] . '%']
+        ]);
     }
 }

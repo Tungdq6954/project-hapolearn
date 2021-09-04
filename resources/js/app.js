@@ -4,3 +4,5 @@ require('./bootstrap');
 require('select2');
 require('./home');
 require('./all_courses');
+require('./detail_course');
+require('./detail_lesson');

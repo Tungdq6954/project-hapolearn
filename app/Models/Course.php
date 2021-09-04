@@ -42,7 +42,7 @@ class Course extends Model
 
     public function getNumberUserAttribute()
     {
-        return $this->users()->where('role', config('constants.role.student'))->count();
+        return $this->users()->count();
     }
 
     public function getLearnTimeAttribute()
@@ -50,17 +50,31 @@ class Course extends Model
         return $this->lessons()->sum('learn_time');
     }
 
+    public function getLessonsAttribute()
+    {
+        return $this->lessons()->paginate(config('constants.pagination'));
+    }
+
+    public function getTagsAttribute()
+    {
+        return $this->tags()->get();
+    }
+
+    public function getTeacherAttribute()
+    {
+        return $this->users()->where('role', config('constants.role.teacher'))->get();
+    }
+
     public function scopeMainCourse($query)
     {
         $query->withCount(['users' => function ($subquery) {
             $subquery->where('role', config('constants.role.student'));
-        }
-        ])->orderByDesc('users_count')->limit(3);
+        }])->orderByDesc('users_count')->limit(3);
     }
 
-    public function scopeOtherCourse($query)
+    public function scopeOtherCourse($query, $id)
     {
-        $query->orderByDesc('id')->limit(3);
+        $query->where('id', '<>', $id)->orderByDesc('id');
     }
 
     public function scopeFilter($query, $data)
