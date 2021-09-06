@@ -10,9 +10,9 @@ $(function () {
   /**
    * reload page when click button back from detail_lesson page
    */
-  var perfEntries = performance.getEntriesByType("navigation");
+  // var perfEntries = performance.getEntriesByType("navigation");
 
-  if (perfEntries[0].type === "back_forward") {
-    location.reload(true);
-  }
+  // if (perfEntries[0].type === "back_forward") {
+  //   location.reload(true);
+  // }
 });

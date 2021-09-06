@@ -60,14 +60,13 @@
 
                                         <div class="col-lg-4 col-md-12 mt-lg-0 mt-md-3">
                                             @if (isset($isJoinedCourse) && $isJoinedCourse)
-                                                <div class="joined-course" id="joined-course">Đã tham gia</div>
+                                                <div class="joined-course" id="joined-course">Joined</div>
                                             @else
                                                 <form method="get"
                                                     action="{{ route('courses.join_course', [$courseId]) }}">
                                                     @csrf
-                                                    <button type="submit" class="join-course" id="join-course">Tham gia
-                                                        khoá
-                                                        học</button>
+                                                    <button type="submit" class="join-course" id="join-course">Join
+                                                        course</button>
                                                 </form>
                                             @endif
                                         </div>

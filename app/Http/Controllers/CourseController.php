@@ -59,7 +59,7 @@ class CourseController extends Controller
         return redirect()->route('courses.detail', [$courseId]);
     }
 
-    public function end($courseId)
+    public function leave($courseId)
     {
         $course = Course::find($courseId);
         $lessons = $course->lessons;

@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="end-course">
                                     <a href="{{ route('courses.end_course', ['courseId' => $courseId]) }}" class="button-end-course">
-                                        End course
+                                        Leave course
                                     </a>
                                 </div>
                             </div>
