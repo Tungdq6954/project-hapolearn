@@ -1,0 +1,246 @@
+.profile {
+  background: $hapo_learn_banner_background_color;
+  font-family: $font_UTM_BryantLG;
+  padding-bottom: 100px;
+  padding-top: 40px;
+
+  .avatar-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .avatar {
+    width: 255px;
+    height: 255px;
+    border: 5px solid white;
+    object-fit: fill;
+    border-radius: 50%;
+  }
+
+  .camera {
+    color: white;
+    text-align: center;
+    margin-top: -50px;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  .username {
+    font-size: 25px;
+    line-height: 31px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .email {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    text-align: center;
+    border-bottom: 1px solid $DCDCDC;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+
+  .icon-birthday {
+    font-size: 17px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: $f26525;
+  }
+
+  .icon-phone {
+    font-size: 18px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: $button_color;
+  }
+
+  .icon-address {
+    font-size: 18px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: $_662e93;
+  }
+
+  .birthday-div,
+  .phone-div,
+  .address-div {
+    border-bottom: 1px solid $DCDCDC;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    display: flex;
+  }
+
+  .birthday-content,
+  .phone-content,
+  .address-content {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    margin-left: 20px;
+  }
+
+  .about-me {
+    font-size: 18px;
+    line-height: 26px;
+    text-align: justify;
+    letter-spacing: -0.02em;
+    color: $_787b7b;
+  }
+
+  .my-course {
+    padding-top: 120px;
+
+    .title {
+      font-size: 38px;
+      line-height: 47px;
+      color: $text_color;
+      -webkit-text-stroke-width: 2px;
+      border-bottom-style: double;
+      border-bottom-color: $title_color;
+    }
+  }
+
+  .list-courses {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .list-courses-item {
+    width: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 10px;
+
+    .img-course {
+      width: 66px;
+      height: 66px;
+      object-fit: fill;
+      border-radius: 50%;
+    }
+
+    .course-title {
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: -0.02em;
+      color: $text_color;
+      text-align: center;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .add-course-item {
+    width: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+
+    .add-course-button {
+      width: 66px;
+      height: 66px;
+      background: white;
+      border: 1.5px solid $title_color;
+      box-sizing: border-box;
+      color: $title_color;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .add-course-title {
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: -0.05em;
+      color: $title_color;
+      text-align: center;
+    }
+
+    &:hover {
+      .add-course-title {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .edit-profile-title {
+    font-size: 38px;
+    line-height: 47px;
+    color: $text_color;
+    -webkit-text-stroke-width: 2px;
+    border-bottom-style: double;
+    border-bottom-color: $title_color;
+  }
+
+  .input-label {
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: -0.02em;
+    color: $text_color;
+    -webkit-text-stroke-width: 0.5px;
+  }
+
+  .input-style {
+    height: 50px;
+    background: white;
+    border: 1px solid $d6d6d6;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  .button-update {
+    background: $button_color;
+    box-shadow: inset 0px 1.5px 2px $main_courses_box_shadow;
+    border-radius: 22px;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 9px 20px 9px 20px;
+    -webkit-text-stroke-width: 1px;
+
+    &:hover {
+      color: $text_color;
+    }
+  }
+
+  .calendar-icon {
+    position: absolute;
+    top: 46px;
+    right: 31px;
+    color: $text_color;
+    cursor: pointer;
+  }
+
+  ::-webkit-input-placeholder {
+    /* Edge */
+    color: $CBCBCB;
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer */
+    color: $CBCBCB;
+  }
+
+  ::placeholder {
+    color: $CBCBCB;
+  }
+}

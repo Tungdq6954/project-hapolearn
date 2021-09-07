@@ -22,8 +22,8 @@ class CourseTagFactory extends Factory
     public function definition()
     {
         return [
-            'course_id' => rand(1, 200),
-            'tag_id' => rand(1, 200)
+            // 'course_id' => rand(1, 200),
+            // 'tag_id' => rand(1, 200)
         ];
     }
 }

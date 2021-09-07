@@ -36,7 +36,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-secondary" href="#" data-toggle="modal"
-                            data-target="#login-register">LOGIN/REGISTER</a>
+                            data-target="#login-register" id="nav-link-login-register">LOGIN/REGISTER</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-secondary" href="#">PROFILE</a>
@@ -57,7 +57,7 @@
                         <a class="nav-link text-secondary" href="#">LESSON DETAIL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">PROFILE</a>
+                        <a class="nav-link text-secondary {{ Route::currentRouteName() == 'users.profile' ? 'active' : '' }}" href="{{ route('users.profile') }}">PROFILE</a>
                     </li>
                     <li class="nav-item">
                         <a id="logout-nav" class="nav-link text-secondary" href="{{ route('logout') }}">LOGOUT</a>
