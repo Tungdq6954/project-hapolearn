@@ -28,7 +28,7 @@ class Lesson extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'lesson_users', 'lesson_id', 'user_id')->withPivot('learned');
+        return $this->belongsToMany(User::class, 'lesson_users', 'lesson_id', 'user_id')->withPivot('learned')->withTimestamps();
     }
 
     public function documents()
@@ -38,7 +38,13 @@ class Lesson extends Model
 
     public function getUsersAttribute()
     {
+
         return $this->users()->get();
+    }
+
+    public function getNumberUsersAttribute()
+    {
+        return $this->users()->count();
     }
 
     public function getDocumentsAttribute()

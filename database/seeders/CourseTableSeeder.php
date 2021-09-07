@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\Document;
+use App\Models\Tag;
 
 class CourseTableSeeder extends Seeder
 {
@@ -14,6 +17,6 @@ class CourseTableSeeder extends Seeder
      */
     public function run()
     {
-        Course::factory(100)->create();
+        Course::factory(200)->has(Lesson::factory(10)->has(Document::factory(10)))->create();
     }
 }

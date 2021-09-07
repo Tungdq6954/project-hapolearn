@@ -22,8 +22,8 @@ class DocumentUserFactory extends Factory
     public function definition()
     {
         return [
-            'document_id' => rand(1, 200),
-            'user_id' => rand(1, 200),
+            // 'document_id' => rand(1, 200),
+            // 'user_id' => rand(1, 200),
         ];
     }
 }

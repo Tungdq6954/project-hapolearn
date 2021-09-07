@@ -5,7 +5,7 @@ $(function () {
     }
   });
   $('.document-name, .document-btn-preview').on('click', function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log($(this).attr('data-documentId'));
     console.log($(this).attr('data-lessonId'));
 

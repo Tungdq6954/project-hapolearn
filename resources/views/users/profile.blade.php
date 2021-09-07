@@ -140,12 +140,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="file" name="avatar_input" id="avatar-input">
-                                        @error('avatar_input')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <input type="file" class="hidden" name="avatar_input" id="avatar-input">
                                     </div>
                                     <div class="col-md-6">
                                         <button type="submit" class="float-right button-update">Update</button>

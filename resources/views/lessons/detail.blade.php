@@ -44,6 +44,19 @@
                                             <div class="lesson-tab-title mb-3">Requirements</div>
                                             <div class="lesson-tab-content">{{ $lesson->requirement }}</div>
                                         </div>
+                                        <div class="tags-in-descriptions-tab">
+                                            <span class="tags-title">Tag:</span>
+                                            <div class="list-tags">
+                                                @foreach ($tags as $key => $tag)
+                                                    @if ($key <= 5)
+                                                        <a class="tag-item"
+                                                            href="{{ '/courses/search?search_form_input=&teacher=&number_of_learner=&learn_time=&number_of_lesson=&tag=' . $tag->id . '&review=' }}">
+                                                            #{{ $tag->name }}
+                                                        </a>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="teacher" role="tabpanel" aria-labelledby="teacher-tab">
                                         <div class="teacher-tab-title mb-3">
@@ -127,9 +140,13 @@
                                     <div class="sub-title-value-tags">:
                                         @foreach ($tags as $key => $tag)
                                             @if ($key == count($tags) - 1)
-                                                <a href="{{ '/courses/search?search_form_input=&teacher=&number_of_learner=&learn_time=&number_of_lesson=&tag=' . $tag->id . '&review=' }}"> #{{ $tag->name }}</a>
+                                                <a
+                                                    href="{{ '/courses/search?search_form_input=&teacher=&number_of_learner=&learn_time=&number_of_lesson=&tag=' . $tag->id . '&review=' }}">
+                                                    #{{ $tag->name }}</a>
                                             @else
-                                                <a href="{{ '/courses/search?search_form_input=&teacher=&number_of_learner=&learn_time=&number_of_lesson=&tag=' . $tag->id . '&review=' }}"> #{{ $tag->name }}</a>,
+                                                <a
+                                                    href="{{ '/courses/search?search_form_input=&teacher=&number_of_learner=&learn_time=&number_of_lesson=&tag=' . $tag->id . '&review=' }}">
+                                                    #{{ $tag->name }}</a>,
                                             @endif
                                         @endforeach
                                     </div>
@@ -150,7 +167,8 @@
                                     </div>
                                 </div>
                                 <div class="end-course">
-                                    <a href="{{ route('courses.end_course', ['courseId' => $courseId]) }}" class="button-end-course">
+                                    <a href="{{ route('courses.end_course', ['courseId' => $courseId]) }}"
+                                        class="button-end-course">
                                         Leave course
                                     </a>
                                 </div>

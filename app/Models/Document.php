@@ -20,7 +20,7 @@ class Document extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'document_users', 'document_id', 'user_id')->withPivot('lesson_id');
+        return $this->belongsToMany(User::class, 'document_users', 'document_id', 'user_id')->withPivot('lesson_id')->withTimestamps();
     }
 
     public function getIsLearnedAttribute()

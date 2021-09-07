@@ -62,7 +62,7 @@ class User extends Authenticatable
      */
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_users', 'user_id', 'course_id');
+        return $this->belongsToMany(Course::class, 'course_users', 'user_id', 'course_id')->withTimestamps();
     }
 
     /**
@@ -77,7 +77,7 @@ class User extends Authenticatable
 
     public function documents()
     {
-        return $this->belongsToMany(Document::class, 'document_users', 'user_id', 'document_id')->withPivot('lesson_id');
+        return $this->belongsToMany(Document::class, 'document_users', 'user_id', 'document_id')->withPivot('lesson_id')->withTimestamps();
     }
 
     /**
@@ -87,7 +87,7 @@ class User extends Authenticatable
      */
     public function lessons()
     {
-        return $this->belongsToMany(Lesson::class, 'lesson_users', 'used_id', 'lesson_id')->withPivot('learned');
+        return $this->belongsToMany(Lesson::class, 'lesson_users', 'used_id', 'lesson_id')->withPivot('learned')->withTimestamps();
     }
 
     public function getCoursesAttribute()

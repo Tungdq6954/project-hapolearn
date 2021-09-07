@@ -115,15 +115,16 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .list-courses-item {
     width: 66px;
-    margin-right: 27px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-right: 10px;
 
     .img-course {
       width: 66px;
@@ -138,6 +139,10 @@
       letter-spacing: -0.02em;
       color: $text_color;
       text-align: center;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
   }
 
