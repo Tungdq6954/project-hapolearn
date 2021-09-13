@@ -90,6 +90,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Lesson::class, 'lesson_users', 'used_id', 'lesson_id')->withPivot('learned')->withTimestamps();
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'user_id');
+    }
+
     public function getCoursesAttribute()
     {
         return $this->courses()->get();

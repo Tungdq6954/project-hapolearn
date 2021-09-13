@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(TagTableSeeder::class);
         // $this->call(DocumentTableSeeder::class);
         // $this->call(DocumentUserTableSeeder::class);
+        $this->call(ReplyTableSeeder::class);
     }
 }

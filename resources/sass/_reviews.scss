@@ -1,0 +1,316 @@
+.reviews {
+  font-weight: $font_UTM_BryantLG;
+
+  .number-of-review {
+    font-size: 25px;
+    line-height: 31px;
+    letter-spacing: -0.02em;
+    color: #505353;
+    -webkit-text-stroke-width: 1.5px;
+    border-bottom: 1px solid #f3f0f0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-bottom: 23px;
+  }
+
+  .rating-overview {
+    background: #505353;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-bottom: 34px;
+  }
+
+  .rating-overview-score {
+    font-size: 60px;
+    line-height: 74px;
+    letter-spacing: -0.02em;
+    color: white;
+    -webkit-text-stroke-width: 2.5px;
+    text-align: center;
+  }
+
+  .rating-overview-stars {
+    font-size: 25px;
+    color: #ffd567;
+    text-align: center;
+  }
+
+  .total-review-count {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: white;
+    -webkit-text-stroke-width: 0.5px;
+    text-align: center;
+  }
+
+  .rating-detail {
+    list-style-type: none;
+    border: 1px solid #dfdfdf;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 15px;
+  }
+
+  .rating-detail-list {
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    .rating-title {
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.02em;
+      color: $text_color;
+      -webkit-text-stroke-width: 0.5px;
+      width: 13%;
+    }
+
+    .star-rating-bar {
+      width: 75%;
+      height: 20px;
+      padding-top: 8px;
+      margin-right: 7px;
+    }
+  }
+
+  .custom-progress {
+    background: #e1e1e1;
+    border-radius: 2px;
+    height: 6px;
+  }
+
+  .custom-progress-bar {
+    background: #b2d235;
+    border-radius: 2px;
+  }
+
+  .detail-rating-number {
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    color: #9ba2a2;
+  }
+
+  .mod-reviews {
+    border-top: 1px solid #f3f0f0;
+    padding-top: 20px;
+  }
+
+  .show-all-reivews {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: #505353;
+    -webkit-text-stroke-width: 1px;
+    cursor: pointer;
+  }
+
+  .item-reivew {
+    border-bottom: 1px solid #f3f0f0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .item-reivew-top,
+  .item-reply-top {
+    display: flex;
+    position: relative;
+  }
+
+  .comment-dropdown {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .comment-dropdown-button {
+    border: none;
+    background: white;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: fill;
+    border-radius: 50%;
+  }
+
+  .user-name {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: #505353;
+    -webkit-text-stroke-width: 1.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+  }
+
+  .rating {
+    font-size: 15px;
+    color: #ffd567;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .timestamp {
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #bdb9b9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  .item-review-middle,
+  .item-reply-middle {
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.02em;
+    color: #949292;
+    margin-top: 20px;
+  }
+
+  .btn-reply {
+    border: none;
+    color: white;
+    background-color: $button_color;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .btn-send-reply {
+    width: 80px;
+    height: 30px;
+    background: #b2d235;
+    box-shadow: inset 0px 1.5px 2px #6f8710;
+    border-radius: 22px;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    -webkit-text-stroke-width: 0.5px;
+    border: none;
+
+    &:hover {
+      color: $text_color;
+    }
+  }
+
+  .btn-close-reply {
+    width: 80px;
+    height: 30px;
+    background: red;
+    box-shadow: inset 0px 1.5px 2px #6f8710;
+    border-radius: 22px;
+    font-size: 15px;
+    line-height: 26px;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    -webkit-text-stroke-width: 0.5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: $text_color;
+    }
+  }
+
+  .reply {
+    border-top: 1px solid #f3f0f0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 60px;
+    margin-top: 20px;
+  }
+
+  .leave-a-review-div {
+    margin-top: 20px;
+  }
+
+  .leave-a-review-txt {
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #505353;
+    -webkit-text-stroke-width: 1.5px;
+  }
+
+  .title-box-comment {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: #747474;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .vote-txt {
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #505353;
+    -webkit-text-stroke-width: 1.5px;
+  }
+
+  .pick-rate {
+    color: #d8d8d8;
+    font-size: 18px;
+    padding-top: 4px;
+
+    & > input + label {
+      cursor: pointer;
+    }
+  }
+
+  .unchecked-star {
+    color: #d8d8d8;
+    font-size: 18px;
+    cursor: pointer;
+
+    &:hover {
+      color: #ffd567;
+    }
+  }
+
+  .checked-star {
+    color: #ffd567;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .stars-txt {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: #747474;
+    line-height: 31px;
+  }
+
+  .vote-alert {
+    color: red;
+  }
+
+  .vote-alert-hide {
+    display: none;
+  }
+
+  .btn-send {
+    width: 80px;
+    height: 30px;
+    background: #b2d235;
+    box-shadow: inset 0px 1.5px 2px #6f8710;
+    border-radius: 22px;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    -webkit-text-stroke-width: 0.5px;
+    border: none;
+    float: right;
+
+    &:hover {
+      color: $text_color;
+    }
+  }
+}

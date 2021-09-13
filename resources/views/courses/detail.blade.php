@@ -36,8 +36,8 @@
                             </li>
                         </ul>
 
-                        <div class="tab-content mt-4 pl-2" id="lessons-teacher-reviews-contents">
-                            <div class="tab-pane fade show active" id="lessons" role="tabpanel"
+                        <div class="tab-content mt-4" id="lessons-teacher-reviews-contents">
+                            <div class="tab-pane fade pl-2 show active" id="lessons" role="tabpanel"
                                 aria-labelledby="lessons-tab">
                                 <div class="lessons-toolbar mb-4">
                                     <div class="row">
@@ -82,7 +82,7 @@
                                     {{ $lessons->appends($_GET)->links('pagination') }}
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="teacher" role="tabpanel" aria-labelledby="teacher-tab">
+                            <div class="tab-pane fade pl-2" id="teacher" role="tabpanel" aria-labelledby="teacher-tab">
                                 <div class="teacher-tab-title mb-3">
                                     Main Teachers
                                 </div>
@@ -90,7 +90,9 @@
                                     @include('users._teacher', [$teacher])
                                 @endforeach
                             </div>
-                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">...</div>
+                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                @include('reviews.index')
+                            </div>
                         </div>
                     </div>
                 </div>

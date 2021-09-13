@@ -33,5 +33,5 @@
                 <div href="#" class="lesson-title">{{ $key + 1 }}. {{ $lesson->title }}</div>
             </div>
         @endguest
-</div>
+    </div>
 </div>

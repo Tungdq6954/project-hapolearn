@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,5 @@ Route::post('/documents/learn', [DocumentController::class, 'learn'])->middlewar
 Route::get('courses/leave/{courseId}', [CourseController::class, 'leave'])->name('courses.end_course')->middleware('auth');
 Route::get('users/profile', [UserController::class, 'profile'])->name('users.profile')->middleware('auth');
 Route::post('users/profile/upload', [UserController::class, 'upload'])->name('users.upload')->middleware('auth');
+Route::post('/reviews/store', [ReviewController::class, 'store'])->middleware('auth');
+Route::post('/replies/store', [ReplyController::class, 'store'])->middleware('auth');

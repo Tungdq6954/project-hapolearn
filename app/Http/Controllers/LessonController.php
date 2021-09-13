@@ -21,7 +21,7 @@ class LessonController extends Controller
         
         $course = Course::find($courseId);
         $lesson = Lesson::find($lessonId);
-        $percentage = $lesson->progress;
+        $percentage = is_null($lesson->progress) ? 0 : $lesson->progress;
         $documents = $lesson->documents;
         $tags = $course->tags;
         $teachers = $course->teacher;
@@ -46,7 +46,8 @@ class LessonController extends Controller
         $tags = $course->tags;
         $teachers = $course->teacher;
         $otherCourses = Course::query()->otherCourse($courseId)->limit(config('constants.number_other_course_in_detail_course'))->get();
+        $reviews = $course->reviews;
 
-        return view('courses.detail', compact(['course', 'lessons', 'tags', 'keyword', 'courseId', 'otherCourses', 'teachers', 'isJoinedCourse']));
+        return view('courses.detail', compact(['course', 'lessons', 'tags', 'keyword', 'courseId', 'otherCourses', 'teachers', 'isJoinedCourse', 'reviews']));
     }
 }

@@ -33,8 +33,8 @@
                                     </li>
                                 </ul>
 
-                                <div class="tab-content mt-4 pl-2" id="lessons-teacher-reviews-contents">
-                                    <div class="tab-pane fade show active" id="descriptions" role="tabpanel"
+                                <div class="tab-content mt-4" id="lessons-teacher-reviews-contents">
+                                    <div class="tab-pane fade show pl-2 active" id="descriptions" role="tabpanel"
                                         aria-labelledby="lessons-tab">
                                         <div class="descriptions-lesson mb-3">
                                             <div class="lesson-tab-title mb-3">Descriptions lesson</div>
@@ -58,7 +58,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="teacher" role="tabpanel" aria-labelledby="teacher-tab">
+                                    <div class="tab-pane fade pl-2" id="teacher" role="tabpanel" aria-labelledby="teacher-tab">
                                         <div class="teacher-tab-title mb-3">
                                             Main Teachers
                                         </div>

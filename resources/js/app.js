@@ -11,3 +11,4 @@ require('./all_courses');
 require('./detail_course');
 require('./detail_lesson');
 require('./profile');
+require('./reviews');

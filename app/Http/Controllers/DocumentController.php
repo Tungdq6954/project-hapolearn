@@ -31,7 +31,7 @@ class DocumentController extends Controller
         }
 
         /**
-         * do if(!$isLearnedDocument) update bang document_users
+         * do if(!$isLearnedDocument) update table document_users
          */
         $percentage = Lesson::find($request->lessonId)->progress;
 

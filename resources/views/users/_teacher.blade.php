@@ -1,7 +1,7 @@
 <div class="teacher">
     <div class="row">
         <div class="col-2 pr-0">
-            <img src="{{ $teacher->avatar }}" class="img-teacher" alt="img-teacher">
+            <img src="{{ asset($teacher->avatar) }}" class="img-teacher" alt="img-teacher">
         </div>
         <div class="col-9">
             <div class="d-flex h-100 flex-column justify-content-center">
