@@ -161,9 +161,9 @@ class Course extends Model
             $difference = $ratingOverview - (int)$ratingOverview;
             if($difference < 0.25) {
                 return number_format((int)$ratingOverview, 1);
-            } else if($difference >= 0.25 && $difference < 0.75) {
+            } elseif($difference >= 0.25 && $difference < 0.75) {
                 return (int)$ratingOverview + 0.5;
-            } else if($difference >= 0.75) {
+            } elseif($difference >= 0.75) {
                 return number_format((int)$ratingOverview + 1, 1);
             }
         }

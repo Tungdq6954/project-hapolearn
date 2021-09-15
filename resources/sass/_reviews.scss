@@ -117,13 +117,13 @@
     position: relative;
   }
 
-  .comment-dropdown {
+  .comment-option-dropdown {
     position: absolute;
     right: 0;
     cursor: pointer;
   }
 
-  .comment-dropdown-button {
+  .comment-option-dropdown-button {
     border: none;
     background: white;
   }
@@ -182,7 +182,8 @@
     margin-top: 10px;
   }
 
-  .btn-send-reply {
+  .btn-send-reply,
+  .btn-send-review-edit {
     width: 80px;
     height: 30px;
     background: #b2d235;
@@ -200,7 +201,8 @@
     }
   }
 
-  .btn-close-reply {
+  .btn-close-reply,
+  .btn-close-review-edit {
     width: 80px;
     height: 30px;
     background: red;

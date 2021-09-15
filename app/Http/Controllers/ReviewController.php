@@ -23,6 +23,8 @@ class ReviewController extends Controller
         $course = Course::find($data['courseId']);        
 
         return response()->json([
+            'reviewId' => $review->id,
+            'user_id' => $data['userId'],
             'content' => $data['write_comment'],
             'rate' => $data['rate'],
             'avatar' => 'http://localhost:8000/' . $review->user->avatar,

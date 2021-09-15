@@ -94,10 +94,10 @@
     </div>
     <div class="mod-reviews">
         <div>
-            <div class="show-all-reivews">Show all reviews <i class="fas fa-sort-down"></i></div>
+            <span class="show-all-reivews">Show all reviews <i class="fas fa-sort-down"></i></span>
         </div>
         <div class="reviews-list">
-            @foreach ($reviews as $review)
+            @foreach ($reviews as $key => $review)
                 <div class="item-reivew">
                     <div class="item-reivew-top">
                         <img class="user-avatar" src="{{ asset($review->user->avatar) }}" alt="avatar">
@@ -110,9 +110,39 @@
                         <div class="timestamp">
                             {{ $review->comment_time }}
                         </div>
+                        @if ($review->user_id == Auth::id())
+                            <div class="dropdown comment-option-dropdown">
+                                <button class="comment-option-dropdown-button" type="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item btn-edit-review" href="#">Edit</a>
+                                    <a class="dropdown-item btn-remove-review" href="#">Remove</a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="item-review-middle">
-                        {{ $review->content }}
+                        <div class="review-content">{{ $review->content }}</div>
+                        <div class="card card-body edit-review-card hidden">
+                            <form method="post">
+                                @csrf
+
+                                <div class="form-group">
+                                    <label for="edit-comment" class="title-box-comment">Edit comment</label>
+                                    <textarea class="form-control edit-comment" name="edit_comment" rows="5"
+                                        required>{{ $review->content }}</textarea>
+                                </div>
+                                <div class="float-right d-flex">
+                                    <div class="btn-close-review-edit">Close</div>
+                                    <button type="submit" class="ml-2 btn-send-review-edit"
+                                        data-review-id="{{ $review->id }}" data-user-id="{{ $review->user_id }}"
+                                        data-course-id="{{ $review->course_id }}"
+                                        dara-lesson-id="{{ $review->lesson_id }}">Edit</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="item-review-bottom">
                         <button class="btn-reply" type="button" data-toggle="collapse"
@@ -137,7 +167,7 @@
                                         value="{{ $review->id }}">
 
                                     <div class="float-right d-flex">
-                                        <div id="btn-close-reply" class="btn-close-reply">Close</div>
+                                        <div class="btn-close-reply">Close</div>
                                         <button type="submit" class="btn-send-reply ml-2">Reply</button>
                                     </div>
                                 </form>

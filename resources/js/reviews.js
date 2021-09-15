@@ -63,9 +63,37 @@ $(function () {
               <div class="item-review-middle">
               ` + response.content + `
               </div>
+              <div class="item-review-bottom">
+                        <button class="btn-reply" type="button" data-toggle="collapse"
+                            data-target="#review-` + response.reviewId + `" aria-expanded="false"
+                            aria-controls="collapseExample">
+                            Reply
+                        </button>
+                        <div class="collapse mt-4" id="review-` + response.reviewId + `">
+                            <div class="card card-body">
+                                <form method="post">
+                                    <div class="form-group">
+                                        <label for="write-comment" class="title-box-comment">Reply</label>
+                                        <textarea class="form-control write-reply" name="write_reply" rows="5"
+                                            required></textarea>
+                                    </div>
+
+                                    <input type="hidden" name="userId" class="user-id"
+                                        value="` + response.user_id +`">
+                                    <input type="hidden" name="reviewId" class="review-id"
+                                        value="` + response.reviewId + `">
+
+                                    <div class="float-right d-flex">
+                                        <div id="btn-close-reply" class="btn-close-reply">Close</div>
+                                        <button type="submit" class="btn-send-reply ml-2">Reply</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
             </div>`
           );
-
+          $('.vote-alert').addClass('vote-alert-hide');
           $('#write-comment').val('');
           $('.pick-rate > input').prop('checked', false);
           $('.pick-rate > label').css('color', '#d8d8d8');
@@ -162,15 +190,17 @@ $(function () {
     }
   });
 
-  $('.btn-close-reply').on('click', function () {
+  $(document).on('click', '.btn-close-reply', function () {
     $(this).parent().parent().parent().parent().removeClass('show');
     $(this).parent().parent().parent().parent().parent().find('.btn-reply').addClass('collapsed');
     $(this).parent().parent().find('textarea').val('');
+    console.log('close reply');
   });
 
-  $('.btn-send-reply').on('click', function (e) {
+  $(document).on('click', '.btn-send-reply', function (e) {
     e.preventDefault();
     var thisButton = $(this);
+    console.log(thisButton);
 
     $.ajax({
       type: "post",
@@ -182,9 +212,9 @@ $(function () {
       },
       dataType: "json",
       success: function (response) {
-        console.log(response);
+        console.log($(thisButton).parent().parent().parent().parent().parent().parent());
 
-        $(thisButton).parent().parent().parent().parent().parent().parent().find('.replies-list').append(
+        $(thisButton).parent().parent().parent().parent().parent().parent().append(
           `<div class="reply">
                   <div class="item-reply-top">
                       <img class="user-avatar" src="` + response.avatar + `"
@@ -205,5 +235,21 @@ $(function () {
         $(thisButton).parent().parent().find('textarea').val('');
       }
     });
+  });
+
+  $('.reviews-list').on('click', '.btn-edit-review', function(event) {
+    event.preventDefault();
+    $(this).parent().parent().parent().parent().find('.review-content').addClass('hidden');
+    $(this).parent().parent().parent().parent().find('.edit-review-card').removeClass('hidden');
+    $(this).parent().parent().parent().parent().find('.btn-reply').addClass('hidden');
+  });
+
+  $('.reviews-list').on('click', '.btn-close-review-edit', function(event) {
+    event.preventDefault();
+    var reviewContent = $(this).parent().parent().parent().parent().find('.review-content').text();
+    $(this).parent().parent().parent().parent().find('.review-content').removeClass('hidden');
+    $(this).parent().parent().parent().parent().find('.edit-review-card').addClass('hidden');
+    $(this).parent().parent().parent().parent().parent().find('.btn-reply').removeClass('hidden');
+    $(this).parent().parent().find('.edit-comment').val(reviewContent);
   });
 });
