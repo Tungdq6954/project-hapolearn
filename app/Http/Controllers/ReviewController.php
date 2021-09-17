@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Course;
+use App\Models\Reply;
 
 class ReviewController extends Controller
 {
@@ -20,7 +21,7 @@ class ReviewController extends Controller
             'lesson_id' => $data['lessonId'],
         ]);
 
-        $course = Course::find($data['courseId']);        
+        $course = Course::find($data['courseId']);
 
         return response()->json([
             'reviewId' => $review->id,
@@ -43,5 +44,36 @@ class ReviewController extends Controller
             'two_stars_rate' => $course->two_stars_rate,
             'one_star_rate' => $course->one_star_rate,
         ]);
+    }
+
+    public function edit(Request $request)
+    {
+        $data = $request->all();
+        $review = Review::find($data['reviewId']);
+        $isSame = true;
+
+        if($review->content != $data['edit_comment']) {
+            $review->content = $data['edit_comment'];
+            $review->edit = config('constants.is_edited');
+            $review->save();
+            $isSame = false;
+        }
+
+        return response()->json([
+            'review_edit' => $data['edit_comment'],
+            'is_same' => $isSame,
+        ]);
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        $review = Review::find($data['reviewId']);
+        $repliesId = $review->replies->pluck('id')->toArray();
+        
+        Reply::whereIn('id', $repliesId)->delete();
+        $review->delete();
+
+        return response()->json('review is deleted');
     }
 }

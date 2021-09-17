@@ -27,4 +27,6 @@ return [
         'sample.pdf',
         'SampleVideo_1280x720_1mb.mp4',
     ],
+
+    'is_edited' => 1,
 ];

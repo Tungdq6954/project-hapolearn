@@ -36,3 +36,7 @@ Route::get('users/profile', [UserController::class, 'profile'])->name('users.pro
 Route::post('users/profile/upload', [UserController::class, 'upload'])->name('users.upload')->middleware('auth');
 Route::post('/reviews/store', [ReviewController::class, 'store'])->middleware('auth');
 Route::post('/replies/store', [ReplyController::class, 'store'])->middleware('auth');
+Route::post('/reviews/edit', [ReviewController::class, 'edit'])->middleware('auth');
+Route::post('/replies/edit', [ReplyController::class, 'edit'])->middleware('auth');
+Route::post('/reviews/delete', [ReviewController::class, 'delete'])->middleware('auth');
+Route::post('/replies/delete', [ReplyController::class, 'delete'])->middleware('auth');

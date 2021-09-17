@@ -59,6 +59,18 @@ $(function () {
                     <div class="user-name">` + response.username + `</div>
                     <div class="rating">` + starsInComment + `</div>
                   <div class="timestamp"> ` + response.timestamp + ` </div>
+                  <div class="dropdown comment-option-dropdown">
+                      <button class="comment-option-dropdown-button" type="button" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item btn-edit-review" data-review-id="` + response.reviewId + `"
+                              href="#">Edit</a>
+                          <a class="dropdown-item btn-remove-review" data-toggle="modal"
+                              data-target="#confirm-delete-review-`+response.reviewId+`" href="#">Remove</a>
+                      </div>
+                  </div>
                 </div>
               <div class="item-review-middle">
               ` + response.content + `
@@ -79,7 +91,7 @@ $(function () {
                                     </div>
 
                                     <input type="hidden" name="userId" class="user-id"
-                                        value="` + response.user_id +`">
+                                        value="` + response.user_id + `">
                                     <input type="hidden" name="reviewId" class="review-id"
                                         value="` + response.reviewId + `">
 
@@ -190,66 +202,70 @@ $(function () {
     }
   });
 
-  $(document).on('click', '.btn-close-reply', function () {
-    $(this).parent().parent().parent().parent().removeClass('show');
-    $(this).parent().parent().parent().parent().parent().find('.btn-reply').addClass('collapsed');
-    $(this).parent().parent().find('textarea').val('');
-    console.log('close reply');
+  $('.reviews-list').on('click', '.btn-edit-review', function (event) {
+    event.preventDefault();
+    var reviewId = $(this).data('review-id');
+    $('#review-content-box-' + reviewId).addClass('hidden');
+    $('#edit-review-card-' + reviewId).removeClass('hidden');
+    $('#btn-reply-' + reviewId).addClass('hidden');
+    $('#review-' + reviewId).removeClass('show');
+    $('#btn-reply-' + reviewId).addClass('collapsed');
+    $('#write-reply-' + reviewId).val('');
   });
 
-  $(document).on('click', '.btn-send-reply', function (e) {
+  $('.reviews-list').on('click', '.btn-close-review-edit', function (event) {
+    event.preventDefault();
+    var reviewId = $(this).data('review-id');
+    var reviewContent = $('#review-content-' + reviewId).text();
+    $('#review-content-box-' + reviewId).removeClass('hidden');
+    $('#edit-review-card-' + reviewId).addClass('hidden');
+    $('#btn-reply-' + reviewId).removeClass('hidden');
+    $('#edit-comment-' + reviewId).val(reviewContent);
+  });
+
+  $('.reviews-list').on('click', '.btn-send-review-edit', function (e) {
     e.preventDefault();
-    var thisButton = $(this);
-    console.log(thisButton);
+
+    var reviewId = $(this).data('review-id');
 
     $.ajax({
       type: "post",
-      url: "/replies/store",
+      url: "/reviews/edit",
       data: {
-        'userId': $(thisButton).parent().parent().find('.user-id').val(),
-        'write_reply': $(thisButton).parent().parent().find('.write-reply').val(),
-        'reviewId': $(thisButton).parent().parent().find('.review-id').val(),
+        'edit_comment': $('#edit-comment-' + reviewId).val(),
+        'reviewId': reviewId,
       },
       dataType: "json",
       success: function (response) {
-        console.log($(thisButton).parent().parent().parent().parent().parent().parent());
+        console.log(response);
 
-        $(thisButton).parent().parent().parent().parent().parent().parent().append(
-          `<div class="reply">
-                  <div class="item-reply-top">
-                      <img class="user-avatar" src="` + response.avatar + `"
-                          alt="avatar">
-                      <div class="user-name">` + response.username + `</div>
-                      <div class="timestamp">
-                          ` + response.timestamp + `
-                      </div>
-                  </div>
-                  <div class="item-reply-middle">
-                      ` + response.content + `
-                  </div>
-              </div>`
-        );
-
-        $(thisButton).parent().parent().parent().parent().removeClass('show');
-        $(thisButton).parent().parent().parent().parent().parent().find('.btn-reply').addClass('collapsed');
-        $(thisButton).parent().parent().find('textarea').val('');
+        if (!response.is_same) {
+          $('#review-content-' + reviewId).html(response.review_edit);
+          $('#edited-alert-' + reviewId).removeClass('hidden');
+          $('#edit-comment-' + reviewId).val(response.review_edit);
+        }
+        $('#review-content-box-' + reviewId).removeClass('hidden');
+        $('#edit-review-card-' + reviewId).addClass('hidden');
+        $('#btn-reply-' + reviewId).removeClass('hidden');
       }
     });
   });
 
-  $('.reviews-list').on('click', '.btn-edit-review', function(event) {
-    event.preventDefault();
-    $(this).parent().parent().parent().parent().find('.review-content').addClass('hidden');
-    $(this).parent().parent().parent().parent().find('.edit-review-card').removeClass('hidden');
-    $(this).parent().parent().parent().parent().find('.btn-reply').addClass('hidden');
-  });
+  $('.reviews-list').on('click', '.btn-confirm-delete', function(e) {
+    var reviewId = $(this).data('review-id');
 
-  $('.reviews-list').on('click', '.btn-close-review-edit', function(event) {
-    event.preventDefault();
-    var reviewContent = $(this).parent().parent().parent().parent().find('.review-content').text();
-    $(this).parent().parent().parent().parent().find('.review-content').removeClass('hidden');
-    $(this).parent().parent().parent().parent().find('.edit-review-card').addClass('hidden');
-    $(this).parent().parent().parent().parent().parent().find('.btn-reply').removeClass('hidden');
-    $(this).parent().parent().find('.edit-comment').val(reviewContent);
+    $.ajax({
+      type: "post",
+      url: "/reviews/delete",
+      data: {
+        'reviewId': reviewId,
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        $('#confirm-delete-review-' + reviewId).modal('hide');
+        $('#item-review-' + reviewId).remove();
+      }
+    });
   });
 });

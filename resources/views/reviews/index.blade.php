@@ -98,7 +98,7 @@
         </div>
         <div class="reviews-list">
             @foreach ($reviews as $key => $review)
-                <div class="item-reivew">
+                <div class="item-reivew" id="{{ 'item-review-' . $review->id }}">
                     <div class="item-reivew-top">
                         <img class="user-avatar" src="{{ asset($review->user->avatar) }}" alt="avatar">
                         <div class="user-name">{{ $review->user->name }}</div>
@@ -117,25 +117,34 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item btn-edit-review" href="#">Edit</a>
-                                    <a class="dropdown-item btn-remove-review" href="#">Remove</a>
+                                    <a class="dropdown-item btn-edit-review" data-review-id="{{ $review->id }}"
+                                        href="#">Edit</a>
+                                    <a class="dropdown-item btn-remove-review" data-toggle="modal"
+                                        data-target="{{ '#confirm-delete-review-' . $review->id }}" href="#">Remove</a>
                                 </div>
                             </div>
                         @endif
                     </div>
                     <div class="item-review-middle">
-                        <div class="review-content">{{ $review->content }}</div>
-                        <div class="card card-body edit-review-card hidden">
+                        <div id="{{ 'review-content-box-' . $review->id }}">
+                            <span class="review-content"
+                                id="{{ 'review-content-' . $review->id }}">{{ $review->content }}</span>
+                            <span class="edited-alert @if ($review->edit != config('constants.is_edited')) hidden @endif"
+                                id="{{ 'edited-alert-' . $review->id }}">(edited)</span>
+                        </div>
+                        <div class="card card-body edit-review-card hidden"
+                            id="{{ 'edit-review-card-' . $review->id }}">
                             <form method="post">
                                 @csrf
 
                                 <div class="form-group">
                                     <label for="edit-comment" class="title-box-comment">Edit comment</label>
-                                    <textarea class="form-control edit-comment" name="edit_comment" rows="5"
+                                    <textarea class="form-control edit-comment"
+                                        id="{{ 'edit-comment-' . $review->id }}" name="edit_comment" rows="5"
                                         required>{{ $review->content }}</textarea>
                                 </div>
                                 <div class="float-right d-flex">
-                                    <div class="btn-close-review-edit">Close</div>
+                                    <div class="btn-close-review-edit" data-review-id="{{ $review->id }}">Close</div>
                                     <button type="submit" class="ml-2 btn-send-review-edit"
                                         data-review-id="{{ $review->id }}" data-user-id="{{ $review->user_id }}"
                                         data-course-id="{{ $review->course_id }}"
@@ -145,8 +154,8 @@
                         </div>
                     </div>
                     <div class="item-review-bottom">
-                        <button class="btn-reply" type="button" data-toggle="collapse"
-                            data-target="{{ '#review-' . $review->id }}" aria-expanded="false"
+                        <button class="btn-reply" id="{{ 'btn-reply-' . $review->id }}" type="button"
+                            data-toggle="collapse" data-target="{{ '#review-' . $review->id }}" aria-expanded="false"
                             aria-controls="collapseExample">
                             Reply
                         </button>
@@ -157,7 +166,8 @@
 
                                     <div class="form-group">
                                         <label for="write-comment" class="title-box-comment">Reply</label>
-                                        <textarea class="form-control write-reply" name="write_reply" rows="5"
+                                        <textarea class="form-control write-reply"
+                                            id="{{ 'write-reply-' . $review->id }}" name="write_reply" rows="5"
                                             required></textarea>
                                     </div>
 
@@ -167,33 +177,24 @@
                                         value="{{ $review->id }}">
 
                                     <div class="float-right d-flex">
-                                        <div class="btn-close-reply">Close</div>
-                                        <button type="submit" class="btn-send-reply ml-2">Reply</button>
+                                        <div class="btn-close-reply" data-review-id="{{ $review->id }}">Close</div>
+                                        <button type="submit" data-user-id="{{ Auth::id() }}"
+                                            data-review-id="{{ $review->id }}"
+                                            class="btn-send-reply ml-2">Reply</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="replies-list">
+                    <div class="replies-list" id="{{ 'replies-list-' . $review->id }}">
                         @if (count($review->replies) > 0)
                             @foreach ($review->replies as $reply)
-                                <div class="reply">
-                                    <div class="item-reply-top">
-                                        <img class="user-avatar" src="{{ asset($reply->user->avatar) }}"
-                                            alt="avatar">
-                                        <div class="user-name">{{ $reply->user->name }}</div>
-                                        <div class="timestamp">
-                                            {{ $reply->reply_time }}
-                                        </div>
-                                    </div>
-                                    <div class="item-reply-middle">
-                                        {{ $reply->content }}
-                                    </div>
-                                </div>
+                                @include('reviews.reply', ['reply' => $reply, 'review' => $review])
                             @endforeach
                         @endif
                     </div>
                 </div>
+                @include('components.confirm', ['review' => $review, 'action' => 'delete review'])
             @endforeach
         </div>
     </div>

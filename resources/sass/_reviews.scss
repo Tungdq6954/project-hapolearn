@@ -117,13 +117,15 @@
     position: relative;
   }
 
-  .comment-option-dropdown {
+  .comment-option-dropdown,
+  .reply-option-dropdown {
     position: absolute;
     right: 0;
     cursor: pointer;
   }
 
-  .comment-option-dropdown-button {
+  .comment-option-dropdown-button,
+  .reply-option-dropdown-button {
     border: none;
     background: white;
   }
@@ -183,7 +185,8 @@
   }
 
   .btn-send-reply,
-  .btn-send-review-edit {
+  .btn-send-review-edi,
+  .btn-send-reply-edit {
     width: 80px;
     height: 30px;
     background: #b2d235;
@@ -202,7 +205,8 @@
   }
 
   .btn-close-reply,
-  .btn-close-review-edit {
+  .btn-close-review-edit,
+  .btn-close-reply-edit {
     width: 80px;
     height: 30px;
     background: red;
@@ -220,6 +224,11 @@
     &:hover {
       color: $text_color;
     }
+  }
+
+  .edited-alert {
+    font-style: italic;
+    font-size: 14px;
   }
 
   .reply {

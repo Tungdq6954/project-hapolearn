@@ -27,13 +27,13 @@
 
                             <div class="col-lg-2 col-md-4 p-lg-0 newest-oldest-radio" id="newest-oldest-radio">
                                 <input type="radio" id="radio-newest" name="newest_oldest"
-                                    value="config('constants.options.newest')"
-                                    {{ request('newest_oldest') == "config('constants.options.newest')" ? 'checked' : '' }}>
+                                    value="{{ config('constants.options.newest') }}"
+                                    {{ request('newest_oldest') == config('constants.options.newest') ? 'checked' : '' }}>
                                 <label for="radio-newest">Mới nhất</label>
 
                                 <input type="radio" id="radio-oldest" name="newest_oldest"
-                                    value="config('constants.options.oldest')"
-                                    {{ request('newest_oldest') == "config('constants.options.oldest')" ? 'checked' : '' }}>
+                                    value="{{ config('constants.options.oldest') }}"
+                                    {{ request('newest_oldest') == config('constants.options.oldest') ? 'checked' : '' }}>
                                 <label for="radio-oldest" class="float-lg-right">Cũ nhất</label>
                             </div>
 

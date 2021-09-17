@@ -27,4 +27,32 @@ class ReplyController extends Controller
             'timestamp' => $reply->reply_time
         ]);
     }
+
+    public function edit(Request $request)
+    {
+        $data = $request->all();
+        $reply = Reply::find($data['replyId']);
+        $isSame = true;
+
+        if($reply->content != $data['edit_reply_content']) {
+            $reply->content = $data['edit_reply_content'];
+            $reply->edit = config('constants.is_edited');
+            $reply->save();
+            $isSame = false;
+        }
+
+        return response()->json([
+            'edit_reply_content' => $data['edit_reply_content'],
+            'is_same' => $isSame,
+        ]);
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        $reply = Reply::find($data['replyId']);
+        $reply->delete();
+
+        return response()->json('reply is deleted');
+    }
 }
