@@ -51,8 +51,6 @@ $(function () {
     });
   });
 
-
-
   $('.reviews-list').on('click', '.btn-edit-reply', function (event) {
     event.preventDefault();
     var replyId = $(this).data('reply-id');
