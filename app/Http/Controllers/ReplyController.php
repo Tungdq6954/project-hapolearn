@@ -21,6 +21,8 @@ class ReplyController extends Controller
         ]);
 
         return response()->json([
+            'user_id' => $data['userId'],
+            'replyId' => $reply->id,
             'content' => $data['write_reply'],
             'avatar' => 'http://localhost:8000/' . $reply->user->avatar,
             'username' => $reply->user->name,

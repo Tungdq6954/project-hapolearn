@@ -14,18 +14,23 @@
             </button>
         </div>
         <div class="modal-body">
-            Are you sure you want to delete this review?
+            @if ($action == 'delete review')
+                Are you sure you want to delete this review?
+            @elseif ($action == 'delete reply')
+                Are you sure you want to delete this reply?
+            @endif
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-close-confirm" data-dismiss="modal">Cancel</button>
 
             @if ($action == 'delete review')
-                <button type="button" class="btn btn-primary btn-confirm-delete"
-                    id="{{ 'btn-confirm-delete-' . $review->id }}"
-                    data-review-id="{{ $review->id }}">Delete</button>
+                <button type="button" class="btn btn-primary btn-confirm-delete-review"
+                    id="{{ 'btn-confirm-delete-' . $review->id }}" data-review-id="{{ $review->id }}"
+                    data-dismiss="modal">Delete</button>
             @elseif ($action == 'delete reply')
-                <button type="button" class="btn btn-primary btn-confirm-delete"
-                    id="{{ 'btn-confirm-delete-' . $reply->id }}" data-reply-id="{{ $reply->id }}">Delete</button>
+                <button type="button" class="btn btn-primary btn-confirm-delete-reply"
+                    id="{{ 'btn-confirm-delete-' . $reply->id }}" data-reply-id="{{ $reply->id }}"
+                    data-dismiss="modal">Delete</button>
             @endif
 
         </div>

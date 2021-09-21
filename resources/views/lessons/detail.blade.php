@@ -106,7 +106,8 @@
 
                                     </div>
                                     <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                        ...</div>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>

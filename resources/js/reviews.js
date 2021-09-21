@@ -53,57 +53,103 @@ $(function () {
           }
 
           $('.reviews-list').append(
-            `<div class="item-reivew">
-                <div class="item-reivew-top">
-                    <img class="user-avatar" src="`+ response.avatar + `" alt="avatar">
-                    <div class="user-name">` + response.username + `</div>
-                    <div class="rating">` + starsInComment + `</div>
-                  <div class="timestamp"> ` + response.timestamp + ` </div>
-                  <div class="dropdown comment-option-dropdown">
-                      <button class="comment-option-dropdown-button" type="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                      </button>
-                      <div class="dropdown-menu">
-                          <a class="dropdown-item btn-edit-review" data-review-id="` + response.reviewId + `"
-                              href="#">Edit</a>
-                          <a class="dropdown-item btn-remove-review" data-toggle="modal"
-                              data-target="#confirm-delete-review-`+response.reviewId+`" href="#">Remove</a>
-                      </div>
-                  </div>
+            `<div class="item-reivew" id="item-review-` + response.reviewId + `">
+            <div class="item-reivew-top">
+                <img class="user-avatar" src="`+ response.avatar + `" alt="avatar">
+                <div class="user-name">`+ response.username + `</div>
+                <div class="rating">
+                    `+ starsInComment + `
                 </div>
-              <div class="item-review-middle">
-              ` + response.content + `
-              </div>
-              <div class="item-review-bottom">
-                        <button class="btn-reply" type="button" data-toggle="collapse"
-                            data-target="#review-` + response.reviewId + `" aria-expanded="false"
-                            aria-controls="collapseExample">
-                            Reply
+                <div class="timestamp">
+                    `+ response.timestamp + `
+                </div>
+                    <div class="dropdown comment-option-dropdown">
+                        <button class="comment-option-dropdown-button" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
                         </button>
-                        <div class="collapse mt-4" id="review-` + response.reviewId + `">
-                            <div class="card card-body">
-                                <form method="post">
-                                    <div class="form-group">
-                                        <label for="write-comment" class="title-box-comment">Reply</label>
-                                        <textarea class="form-control write-reply" name="write_reply" rows="5"
-                                            required></textarea>
-                                    </div>
-
-                                    <input type="hidden" name="userId" class="user-id"
-                                        value="` + response.user_id + `">
-                                    <input type="hidden" name="reviewId" class="review-id"
-                                        value="` + response.reviewId + `">
-
-                                    <div class="float-right d-flex">
-                                        <div id="btn-close-reply" class="btn-close-reply">Close</div>
-                                        <button type="submit" class="btn-send-reply ml-2">Reply</button>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item btn-edit-review" data-review-id="`+ response.reviewId + `" href="#">Edit</a>
+                            <a class="dropdown-item btn-remove-review" data-toggle="modal"
+                                data-target="#confirm-delete-review-`+ response.reviewId + `" href="#">Remove</a>
                         </div>
                     </div>
-            </div>`
+            </div>
+            <div class="item-review-middle">
+                <div id="review-content-box-`+ response.reviewId + `">
+                    <span class="review-content"
+                        id="review-content-`+ response.reviewId + `">` + response.content + `</span>
+                    <span class="edited-alert hidden"
+                        id="edited-alert-`+ response.reviewId + `">(edited)</span>
+                </div>
+                <div class="card card-body edit-review-card hidden" id="edit-review-card-`+ response.reviewId + `">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="edit-comment" class="title-box-comment">Edit comment</label>
+                            <textarea class="form-control edit-comment" id="edit-comment-`+ response.reviewId + `"
+                                name="edit_comment" rows="5" required>`+ response.content + `</textarea>
+                        </div>
+                        <div class="float-right d-flex">
+                            <div class="btn-close-review-edit" data-review-id="`+ response.reviewId + `">Close</div>
+                            <button type="submit" class="ml-2 btn-send-review-edit" data-review-id="`+ response.reviewId + `"
+                                data-user-id="`+ response.user_id + `" data-course-id="` + response.course_id + `">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="item-review-bottom">
+                <button class="btn-reply" id="btn-reply-`+ response.reviewId + `" type="button"
+                    data-toggle="collapse" data-target="#review-`+ response.reviewId + `" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Reply
+                </button>
+    
+                <div class="collapse mt-4" id="review-`+ response.reviewId + `">
+                    <div class="card card-body">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="write-comment" class="title-box-comment">Reply</label>
+                                <textarea class="form-control write-reply" id="write-reply-`+ response.reviewId + `"
+                                    name="write_reply" rows="5" required></textarea>
+                            </div>
+    
+                            <input type="hidden" name="userId" class="user-id" value="`+ response.user_id + `">
+                            <input type="hidden" name="reviewId" class="review-id" value="`+ response.reviewId + `">
+    
+                            <div class="float-right d-flex">
+                                <div class="btn-close-reply" data-review-id="`+ response.reviewId + `">Close</div>
+                                <button type="submit" data-user-id="`+ response.user_id + `"
+                                    data-review-id="`+ response.reviewId + `" class="btn-send-reply ml-2">Reply</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="replies-list" id="replies-list-`+ response.reviewId + `">
+            </div>
+        </div>
+        <div class="modal fade" id="confirm-delete-review-`+ response.reviewId + `" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Delete review</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                              Are you sure you want to delete this review?
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary btn-close-confirm" data-dismiss="modal">Cancel</button>
+                              <button type="button" class="btn btn-primary btn-confirm-delete-review"
+                                  id="btn-confirm-delete-`+ response.reviewId + `" data-review-id="` + response.reviewId + `"
+                                  data-dismiss="modal">Delete</button>
+                      </div>
+                  </div>
+              </div>
+          </div>`
           );
           $('.vote-alert').addClass('vote-alert-hide');
           $('#write-comment').val('');
@@ -251,7 +297,7 @@ $(function () {
     });
   });
 
-  $('.reviews-list').on('click', '.btn-confirm-delete', function(e) {
+  $('.reviews-list').on('click', '.btn-confirm-delete-review', function (e) {
     var reviewId = $(this).data('review-id');
 
     $.ajax({
@@ -263,7 +309,6 @@ $(function () {
       dataType: "json",
       success: function (response) {
         console.log(response);
-        $('#confirm-delete-review-' + reviewId).modal('hide');
         $('#item-review-' + reviewId).remove();
       }
     });

@@ -26,8 +26,9 @@ class LessonController extends Controller
         $tags = $course->tags;
         $teachers = $course->teacher;
         $otherCourses = Course::query()->otherCourse($courseId)->limit(config('constants.number_other_course_in_detail_course'))->get();
+        $reviews = $lesson->reviews;
 
-        return view('lessons.detail', compact(['courseId', 'lessonId', 'course', 'lesson', 'tags', 'teachers', 'otherCourses', 'documents', 'percentage']));
+        return view('lessons.detail', compact(['courseId', 'lessonId', 'course', 'lesson', 'tags', 'teachers', 'otherCourses', 'documents', 'percentage', 'reviews']));
     }
 
     public function search(Request $request, $courseId)
