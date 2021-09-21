@@ -22,12 +22,12 @@ class Course extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'course_tags', 'course_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'course_tags', 'course_id', 'tag_id')->withTimestamps();
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'course_users', 'course_id', 'user_id');
+        return $this->belongsToMany(User::class, 'course_users', 'course_id', 'user_id')->withTimestamps();
     }
 
     public function reviews()
@@ -42,7 +42,7 @@ class Course extends Model
 
     public function getNumberUserAttribute()
     {
-        return $this->users()->where('role', config('constants.role.student'))->count();
+        return $this->users()->count();
     }
 
     public function getLearnTimeAttribute()
@@ -50,17 +50,140 @@ class Course extends Model
         return $this->lessons()->sum('learn_time');
     }
 
-    public function scopeMainCourse($query)
+    public function getLessonsAttribute()
     {
-        $query->withCount(['users' => function ($subquery) {
-            $subquery->where('role', config('constants.role.student'));
-        }
-        ])->orderByDesc('users_count')->limit(3);
+        return $this->lessons()->paginate(config('constants.pagination'));
     }
 
-    public function scopeOtherCourse($query)
+    public function getTagsAttribute()
     {
-        $query->orderByDesc('id')->limit(3);
+        return $this->tags()->get();
+    }
+
+    public function getReviewsAttribute()
+    {
+        return $this->reviews()->get();
+    }
+
+    public function getFiveStarsRateAttribute()
+    {
+        return $this->reviews()->where('rate', '=', '5')->count();
+    }
+
+    public function getFiveStarsRatePercentAttribute()
+    {
+        $numberReviews = count($this->getReviewsAttribute());
+
+        if($numberReviews == 0) {
+            return 0;
+        } else {
+            return round(($this->getFiveStarsRateAttribute() / $numberReviews) * 100, 1);
+        }
+    }
+
+    public function getFourStarsRateAttribute()
+    {
+        return $this->reviews()->where('rate', '=', '4')->count();
+    }
+
+    public function getFourStarsRatePercentAttribute()
+    {
+        $numberReviews = count($this->getReviewsAttribute());
+
+        if($numberReviews == 0) {
+            return 0;
+        } else {
+            return round(($this->getFourStarsRateAttribute() / $numberReviews) * 100, 1);
+        }
+    }
+
+    public function getThreeStarsRateAttribute()
+    {
+        return $this->reviews()->where('rate', '=', '3')->count();
+    }
+
+    public function getThreeStarsRatePercentAttribute()
+    {
+        $numberReviews = count($this->getReviewsAttribute());
+
+        if($numberReviews == 0) {
+            return 0;
+        } else {
+            return round(($this->getThreeStarsRateAttribute() / $numberReviews) * 100, 1);
+        }
+    }
+
+    public function getTwoStarsRateAttribute()
+    {
+        return $this->reviews()->where('rate', '=', '2')->count();
+    }
+
+    public function getTwoStarsRatePercentAttribute()
+    {
+        $numberReviews = count($this->getReviewsAttribute());
+
+        if($numberReviews == 0) {
+            return 0;
+        } else {
+            return round(($this->getTwoStarsRateAttribute() / $numberReviews) * 100, 1);
+        }
+    }
+
+    public function getOneStarRateAttribute()
+    {
+        return $this->reviews()->where('rate', '=', '1')->count();
+    }
+
+    public function getOneStarRatePercentAttribute()
+    {
+        $numberReviews = count($this->getReviewsAttribute());
+
+        if($numberReviews == 0) {
+            return 0;
+        } else {
+            return round(($this->getOneStarRateAttribute() / $numberReviews) * 100, 1);
+        }
+    }
+
+    public function getRatingOverviewScoreAttribute()
+    {
+        $numberReviews = count($this->getReviewsAttribute());
+        $fiveStarReviews = $this->getFiveStarsRateAttribute();
+        $fourStarReviews = $this->getFourStarsRateAttribute();
+        $threeStarReviews = $this->getThreeStarsRateAttribute();
+        $twoStarReviews = $this->getTwoStarsRateAttribute();
+        $oneStarReview = $this->getOneStarRateAttribute();
+
+        if($numberReviews == 0) {
+            return $numberReviews;
+        } else {
+            $ratingOverview = ($fiveStarReviews * 5 + $fourStarReviews * 4 + $threeStarReviews * 3 + $twoStarReviews * 2 + $oneStarReview) / $numberReviews;
+            $difference = $ratingOverview - (int)$ratingOverview;
+            if($difference < 0.25) {
+                return number_format((int)$ratingOverview, 1);
+            } elseif($difference >= 0.25 && $difference < 0.75) {
+                return (int)$ratingOverview + 0.5;
+            } elseif($difference >= 0.75) {
+                return number_format((int)$ratingOverview + 1, 1);
+            }
+        }
+    }
+
+    public function getTeacherAttribute()
+    {
+        return $this->users()->where('role', config('constants.role.teacher'))->get();
+    }
+
+    public function scopeMainCourse($query)
+    {
+        return $query->withCount(['users' => function ($subquery) {
+            $subquery->where('role', config('constants.role.student'));
+        }])->orderByDesc('users_count')->limit(3);
+    }
+
+    public function scopeOtherCourse($query, $id)
+    {
+        return $query->where('id', '<>', $id)->orderByDesc('id');
     }
 
     public function scopeFilter($query, $data)

@@ -11,7 +11,7 @@
                             src="{{ asset('img/hapo_logo.png') }}" alt="hapo_logo"> !</span>
                     <span class="d-block hapo-learn-content">Interactive lessons, "on-the-go" <br> practice, peer
                         support.</span>
-                    <a href="#" class="d-block mt-2 button-hapo-learn-banner">
+                    <a href="{{ route('courses.index') }}" class="d-block mt-2 button-hapo-learn-banner">
                         Start Learning Now!
                     </a>
                 </div>
@@ -43,9 +43,9 @@
                             <img src="{{ $mainCourse->logo_path }}" class="card-img-top img-frontend-course"
                                 alt="fontend">
                             <div class="card-body p-0">
-                                <div class="d-flex justify-content-center title-course">{{ $mainCourse->title }}</div>
+                                <a href="{{ route('courses.detail', ['courseId' => $mainCourse->id]) }}" class="d-flex justify-content-center title-course">{{ $mainCourse->title }}</a>
                                 <div class="content-course">{{ $mainCourse->description }}</div>
-                                <a href="#" class="ml-auto mr-auto button-course">Take This Course</a>
+                                <a href="{{ route('courses.detail', ['courseId' => $mainCourse->id]) }}" class="ml-auto mr-auto button-course">Take This Course</a>
                             </div>
                         </div>
                     </div>
@@ -63,16 +63,16 @@
                         <div class="card custom-card-style">
                             <img src="{{ $otherCourse->logo_path }}" class="card-img-top css-course" alt="css">
                             <div class="card-body p-0">
-                                <div class="d-flex justify-content-center title-course">{{ $otherCourse->title }}</div>
+                                <a href="{{ route('courses.detail', ['courseId' => $otherCourse->id]) }}" class="d-flex justify-content-center title-course">{{ $otherCourse->title }}</a>
                                 <div class="content-course">{{ $otherCourse->description }}</div>
-                                <a href="#" class="ml-auto mr-auto button-course">Take This Course</a>
+                                <a href="{{ route('courses.detail', ['courseId' => $otherCourse->id]) }}" class="ml-auto mr-auto button-course">Take This Course</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
             <div class="d-flex justify-content-center">
-                <a class="view-all-courses" href="#">
+                <a class="view-all-courses" href="{{ route('courses.index') }}">
                     View All Our Courses <img class="right-arrow" src="{{ asset('img/right_arrow.png') }}"
                         alt="right_arrow">
                 </a>
@@ -143,7 +143,7 @@
         <div class="container-fluid become-a-member">
             <div class="become-a-member-tilte">Become a member of our
                 growing community!</div>
-            <a href="#" class="become-a-member-button">Start Learning Now!</a>
+            <a href="{{ route('courses.index') }}" class="become-a-member-button">Start Learning Now!</a>
         </div>
 
         <div class="container-fluid statistic p-0">
@@ -152,17 +152,17 @@
                 <div
                     class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
                     <span class="statistic-subtitle">Courses</span>
-                    <span class="statistic-number">1,586</span>
+                    <span class="statistic-number">{{ $coursesNumber }}</span>
                 </div>
                 <div
                     class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex  flex-column justify-content-center align-items-center">
                     <span class="statistic-subtitle">Lessons</span>
-                    <span class="statistic-number">2,689</span>
+                    <span class="statistic-number">{{ $lessonsNumber }}</span>
                 </div>
                 <div
                     class="col-lg-4 col-md-4 col-sm-12 col-12 d-flex  flex-column justify-content-center align-items-center">
                     <span class="statistic-subtitle">Learners</span>
-                    <span class="statistic-number">16,882</span>
+                    <span class="statistic-number">{{ $learnersNumber }}</span>
                 </div>
             </div>
         </div>

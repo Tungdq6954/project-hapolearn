@@ -22,9 +22,9 @@ class LessonUserFactory extends Factory
     public function definition()
     {
         return [
-            'lesson_id' => rand(1, 200),
-            'used_id' => rand(1, 200),
-            'learned' => rand(0, 1)
+            // 'lesson_id' => rand(1, 200),
+            // 'user_id' => rand(1, 200),
+            // 'learned' => rand(0, 1)
         ];
     }
 }

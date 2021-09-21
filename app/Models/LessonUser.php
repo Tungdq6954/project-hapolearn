@@ -12,6 +12,14 @@ class LessonUser extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'lesson_id', 'used_id', 'learned'
+        'lesson_id', 'user_id', 'learned'
     ];
+
+    public function scopeIsLearned($query, $userId, $lessonId)
+    {
+        return $query->where([
+            ['user_id', '=', $userId],
+            ['lesson_id', '=', $lessonId]
+        ]);
+    }
 }
