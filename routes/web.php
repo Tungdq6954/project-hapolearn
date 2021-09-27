@@ -9,6 +9,8 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,5 @@ Route::post('/reviews/edit', [ReviewController::class, 'edit'])->middleware('aut
 Route::post('/replies/edit', [ReplyController::class, 'edit'])->middleware('auth');
 Route::post('/reviews/delete', [ReviewController::class, 'delete'])->middleware('auth');
 Route::post('/replies/delete', [ReplyController::class, 'delete'])->middleware('auth');
+Route::post('reset-password', [ResetPasswordController::class, 'sendMail']);
+Route::put('reset-password/{token}', [ResetPasswordController::class, 'reset']);
